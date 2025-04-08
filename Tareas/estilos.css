@@ -1,0 +1,257 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #28a745;
+    margin: 0;
+    border-radius: 10px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 30px;
+    display: block;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a.active {
+    background-color: #218838;
+}
+
+nav ul li a:hover {
+    background-color: #218838;
+}
+
+.content-section {
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #28a745;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+h2 i {
+    margin-left: 10px;
+    color: #28a745;
+}
+
+.columnas {
+    display: flex;
+    gap: 20px;
+}
+
+.columna {
+    flex: 1;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.imagen-titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imagen-titulo img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la lista de tareas */
+#lista-tareas {
+    list-style-type: none;
+    padding: 0;
+}
+
+#lista-tareas li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la cuadrícula de alumnos */
+.cuadricula-alumnos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.cuadricula-alumnos .alumno {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Estilos del formulario de registro */
+#registro form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#registro .form-group {
+    margin-bottom: 15px;
+}
+
+#registro .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#registro .form-group input,
+#registro .form-group textarea,
+#registro .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#registro .form-group textarea {
+    resize: vertical;
+}
+
+#registro button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#registro button:hover {
+    background-color: #218838;
+}
+
+/* Estilos del filtro de informe */
+#informe .filtros {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#informe .filtros .form-group {
+    margin-bottom: 15px;
+}
+
+#informe .filtros .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#informe .filtros .form-group input,
+#informe .filtros .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#informe .filtros button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#informe .filtros button:hover {
+    background-color: #218838;
+}
+
+/* Estilos de los resultados del informe */
+#resultado-informe {
+    margin-top: 20px;
+}
+
+#superados {
+    background-color: #e8f5e9; /* Verde pastel */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#no-superados {
+    background-color: #ffebee; /* Rojo pastel */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.barra-progreso {
+    background-color: #ddd;
+    border-radius: 5px;
+    height: 20px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.barra-progreso-llenado {
+    background-color: #28a745;
+    height: 100%;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
