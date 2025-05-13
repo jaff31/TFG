@@ -19,7 +19,7 @@
         <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
         <nav>
             <ul>
-                <li><a href="index.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
+                <li><a href="tareas.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
                 <li><a href="#" onclick="mostrarSeccion('alumnos')">Alumnos</a></li>
                 <li><a href="registros.php" onclick="mostrarSeccion('registro')">Registro</a></li>
                 <li><a href="resumen.php" onclick="mostrarSeccion('resumen')">Resumen</a></li>

@@ -19,7 +19,7 @@
         <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
         <nav>
             <ul>
-                <li><a href="index.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
+                <li><a href="tareas.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
                 <li><a href="alumnos.php" onclick="mostrarSeccion('alumnos')">Alumnos</a></li>
                 <li><a href="registros.php" onclick="mostrarSeccion('registro')">Registro</a></li>
                 <li><a href="#" onclick="mostrarSeccion('resumen')">Resumen</a></li>
@@ -30,12 +30,21 @@
     <main>
             
         <section id="resumen" >
-            <h2>Resumen <i class="fas fa-chart-bar"></i></h2>
-            <div class="resumen-datos">
-                <p>Total Tareas: <span id="totalTareas"><?php echo mysqli_num_rows($tareas) ?> </span></p>
-                <p>Total Alumnos: <span id="totalAlumnos"><?php echo mysqli_num_rows($alumnos) ?>   </span></p>
-                <p>Total Registros: <span id="totalRegistros"><?php echo mysqli_num_rows($registros) ?></span></p>
+        <div class="resumen-cards">
+            <div class="card">
+                <h3><i class="fas fa-tasks"></i> Tareas</h3>
+                <p><?php echo mysqli_num_rows($tareas); ?></p>
             </div>
+            <div class="card">
+                <h3><i class="fas fa-user-graduate"></i> Alumnos</h3>
+                <p><?php echo mysqli_num_rows($alumnos); ?></p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-clipboard-list"></i> Registros</h3>
+                <p><?php echo mysqli_num_rows($registros); ?></p>
+            </div>
+</div>
+
         </section>
     </main>
 

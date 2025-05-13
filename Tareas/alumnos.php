@@ -1,5 +1,5 @@
 <?php
-    require 'funciones.php';
+    require './funciones.php';
     $registros = getRegistros();
     $tareas = getTareas();
     $alumnos = getAlumnos();
