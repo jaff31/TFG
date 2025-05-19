@@ -6,6 +6,9 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+body.modal-abierto {
+    overflow: hidden;
+}
 
 header {
     background-color: #8B0000;
@@ -103,11 +106,14 @@ form h3 {
 }
 
 form input, form textarea, form select {
-    width: 100%;
+    width:calc(100% - 20px);
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+form select{
+    width:calc(100% + 2px);
 }
 
 form button {
@@ -139,8 +145,35 @@ form button {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px;
+    max-width: 500px;
     border-radius: 5px;
+    h2{
+        text-align: center;
+    }
+    .form-edit{
+        text-align: center;
+        background-color: white;
+        padding: 16px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        input , textarea, select{
+            display: block;
+            width: calc(100% - 32px);
+            margin-bottom: 16px;
+        }
+        select{
+            width: calc(100% - 10px)
+        }
+        label{
+            display: block;
+            width: 100%;
+            text-align: start;
+            font-weight: 600;
+            font-size: 14px;
+            font-family: "Inter", sans-serif;
+        }
+    }
 }
 
 .cerrar {

@@ -11,6 +11,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Tareas y Alumnos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -69,149 +72,11 @@
             </form>
         </section>
 
-        <section id="alumnos" class="seccion-oculta">
-            <h2>Alumnos <i class="fas fa-users"></i></h2>
-            <div class="lista-alumnos">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Fecha Creación</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Juan Pérez</td>
-                            <td>juan@example.com</td>
-                            <td>2023-10-01</td>
-                            <td>
-                                <button class="btn-consultar" onclick="mostrarDetallesAlumno(1)">Consultar</button>
-                                <button class="btn-editar" onclick="editarAlumno(1)">Editar</button>
-                                <button class="btn-eliminar" onclick="eliminarAlumno(1)">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>María Gómez</td>
-                            <td>maria@example.com</td>
-                            <td>2023-10-02</td>
-                            <td>
-                                <button class="btn-consultar" onclick="mostrarDetallesAlumno(2)">Consultar</button>
-                                <button class="btn-editar" onclick="editarAlumno(2)">Editar</button>
-                                <button class="btn-eliminar" onclick="eliminarAlumno(2)">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Carlos Ruiz</td>
-                            <td>carlos@example.com</td>
-                            <td>2023-10-03</td>
-                            <td>
-                                <button class="btn-consultar" onclick="mostrarDetallesAlumno(3)">Consultar</button>
-                                <button class="btn-editar" onclick="editarAlumno(3)">Editar</button>
-                                <button class="btn-eliminar" onclick="eliminarAlumno(3)">Eliminar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <form class="formulario-crear" onsubmit="crearAlumno(event)">
-                <h3>Crear Alumno</h3>
-                <input type="text" id="nombreAlumno" placeholder="Nombre" required>
-                <input type="text" id="apellidoAlumno" placeholder="Apellido" required>
-                <input type="email" id="emailAlumno" placeholder="Email" required>
-                <button type="submit">Crear</button>
-            </form>
-        </section>
-
-        <section id="registro" class="seccion-oculta">
-            <h2>Registro <i class="fas fa-file-alt"></i></h2>
-            <div class="lista-registros">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre Tarea</th>
-                            <th>Nombre Alumno</th>
-                            <th>Fecha Creación</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Revisar documentación</td>
-                            <td>Juan Pérez</td>
-                            <td>2023-10-01</td>
-                            <td>
-                                <button class="btn-consultar" onclick="mostrarDetallesRegistro(1)">Consultar</button>
-                                <button class="btn-editar" onclick="editarRegistro(1)">Editar</button>
-                                <button class="btn-eliminar" onclick="eliminarRegistro(1)">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Preparar presentación</td>
-                            <td>María Gómez</td>
-                            <td>2023-10-02</td>
-                            <td>
-                                <button class="btn-consultar" onclick="mostrarDetallesRegistro(2)">Consultar</button>
-                                <button class="btn-editar" onclick="editarRegistro(2)">Editar</button>
-                                <button class="btn-eliminar" onclick="eliminarRegistro(2)">Eliminar</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Corregir errores</td>
-                            <td>Carlos Ruiz</td>
-                            <td>2023-10-03</td>
-                            <td>
-                                <button class="btn-consultar" onclick="mostrarDetallesRegistro(3)">Consultar</button>
-                                <button class="btn-editar" onclick="editarRegistro(3)">Editar</button>
-                                <button class="btn-eliminar" onclick="eliminarRegistro(3)">Eliminar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <form class="formulario-crear" onsubmit="crearRegistro(event)">
-                <h3>Crear Registro</h3>
-                <select id="tareaRegistro" required>
-                    <option value="">Seleccionar Tarea</option>
-                    <option value="1">Revisar documentación</option>
-                    <option value="2">Preparar presentación</option>
-                    <option value="3">Corregir errores</option>
-                </select>
-                <select id="alumnoRegistro" required>
-                    <option value="">Seleccionar Alumno</option>
-                    <option value="1">Juan Pérez</option>
-                    <option value="2">María Gómez</option>
-                    <option value="3">Carlos Ruiz</option>
-                </select>
-                <input type="text" id="progresoRegistro" placeholder="Progreso" required>
-                <textarea id="descripcionRegistro" placeholder="Descripción" required></textarea>
-                <input type="date" id="fechaActividadRegistro" required>
-                <button type="submit">Crear</button>
-            </form>
-        </section>
-
-        <section id="resumen" class="seccion-oculta">
-            <h2>Resumen <i class="fas fa-chart-bar"></i></h2>
-            <div class="resumen-datos">
-                <p>Total Tareas: <span id="totalTareas">3</span></p>
-                <p>Total Alumnos: <span id="totalAlumnos">3</span></p>
-                <p>Total Registros: <span id="totalRegistros">3</span></p>
-            </div>
-        </section>
-    </main>
+       
 
     <!-- Modales -->
     <div id="modal-consultar" class="hide">
-        <div class="modal-contenido">
+        <div class="modal-contenido detalles-contenido">
             <span class="cerrar" onclick="cerrarModal('#modal-consultar')">&times;</span>
             <h2>Detalles</h2>
             <div id="modal-contenido"></div>
@@ -222,8 +87,10 @@
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal('#modal-editar')">&times;</span>
             <h2>Editar</h2>
-            <form id="formulario-editar" method='PUT'>           
+            <form class ="form-edit" id="formulario-editar" method='PUT'>
+                <label for="editNombre">Nombre de la Tarea</label>           
                 <input type="text" name = "nombre" id="editNombre" placeholder="Nombre" required>
+                <label for="editNombre">Descripcion de la Tarea</label>
                 <textarea id="editDescripcion" placeholder="Descripción" required></textarea>
                 <button type="submit">Guardar</button>
             </form>

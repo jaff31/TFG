@@ -96,9 +96,12 @@
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal('#modal-editar')">&times;</span>
             <h2>Editar</h2>
-            <form id="formulario-editar" method='PUT'>           
-               <input type="text" name="nombreAlumno" id="nom" placeholder="Nombre" >
+            <form class ="form-edit" id="formulario-editar" method='PUT'>
+                <label>Nombre del alumno</label>           
+                <input type="text" name="nombreAlumno" id="nom" placeholder="Nombre" >
+                <label>Apellido del alumno</label> 
                 <input type="text" name="apellidoAlumno" id="ape" placeholder="Apellido" >
+                <label>Email del alumno</label> 
                 <input type="email" name="emailAlumno" id="emailA" placeholder="Email" >
                 <button type="submit">Guardar</button>
             </form>

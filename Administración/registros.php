@@ -54,9 +54,9 @@
                                     <td><?php echo $servicio['nombreAlumno']?></td>
                                     <td><?php echo $servicio['fecha_creacion']?></td>
                                     <td>
-                                        <button class="btn-consultar" onclick="mostrarDetallesAlumno(<?php echo $servicio['id']?>)">Consultar</button>
-                                        <button class="btn-editar" onclick="editarAlumno(<?php echo $servicio['id']?>)">Editar</button>
-                                        <button class="btn-eliminar" onclick="eliminarAlumno(<?php echo $servicio['id']?>)">Eliminar</button>
+                                        <button class="btn-consultar" onclick="mostrarDetallesRegistro(<?php echo $servicio['id']?>)">Consultar</button>
+                                        <button class="btn-editar" onclick="editarRegistro(<?php echo $servicio['id']?>)">Editar</button>
+                                        <button class="btn-eliminar" onclick="eliminarRegistro(<?php echo $servicio['id']?>)">Eliminar</button>
                                     </td>
                                 </tr>
 
@@ -119,7 +119,8 @@
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal('#modal-editar')">&times;</span>
             <h2>Editar</h2>
-            <form id="formulario-editar" method='PUT'>           
+            <form class ="form-edit" id="formulario-editar" method='PUT'>
+            <label>Seleccionar Tarea</label>           
             <select name = "tarea" id="tareaRegistro" required>
                     <option  disabled selected value="" >Seleccionar Tarea</option>
                     <?php  
@@ -133,6 +134,7 @@
                          }
                         ?>
                 </select>
+                <label>Seleccionar Alumno</label> 
                 <select name = "alumno" id="alumnoRegistro" required>
                     <option disabled selected value="">Seleccionar Alumno</option>
                     <?php  
@@ -147,10 +149,13 @@
                          }
                         ?>
                 </select>
+                <label>Progreso</label> 
                 <input name="progreso" type="number" id="progresoRegistro" placeholder="Progreso" required>
-                <textarea name ="descripcion" id="descripcionRegistro" placeholder="Descripción" required></textarea>
+                <label>Descripcion de la tarea</label> 
+                <textarea name ="descripcion" id="descripcionRegistro" placeholder="Descripción"></textarea>
+                <label>Fecha</label> 
                 <input name="fecha" type="date" id="fechaActividadRegistro" required>
-                <button type="submit">Crear</button>
+                <button type="submit">Guardar</button>
             </form>
         </div>
     </div>

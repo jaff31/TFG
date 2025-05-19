@@ -41,19 +41,27 @@ async function mostrarDetallesAlumno(id){
     const modal = document.querySelector("#modal-consultar #modal-contenido")
     
     const pId = document.createElement("P") 
-    pId.textContent = "ID: "+json.id
+    pId.innerHTML = "<strong>ID: </strong>"+json.id
     modal.appendChild(pId)
 
     const pNombre = document.createElement("P") 
-    pNombre.textContent = "Nombre: "+json.nombre
+    pNombre.innerHTML = "<strong>Nombre: </strong>"+json.nombre
     modal.appendChild(pNombre)
 
     const pEmail = document.createElement("P") 
-    pEmail.textContent = "email: "+json.email
+    pEmail.innerHTML = "<strong>email: </strong>"+json.email
     modal.appendChild(pEmail);
 
     const pFecha = document.createElement("P") 
-    pFecha.textContent = "Fecha creacion: "+json.fecha_creacion 
+    
+    const fecha = new Date(json.fecha_creacion);
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Meses van de 0 a 11
+    const anio = fecha.getFullYear();
+
+    const fechaFormateada = `${dia}-${mes}-${anio}`;
+
+    pFecha.innerHTML = "<strong>Fecha creacion: </strong>"+fechaFormateada;
     modal.appendChild(pFecha)
 
     
@@ -73,6 +81,7 @@ function cerrarModal(cerrar){
     modalCerrar.classList.add('hide')
 }
 async function editarAlumno(id){
+   console.log(id)
    const form = document.querySelector("#formulario-editar")
    form.setAttribute("onsubmit","editAlumno("+id+")")
    const contenedor = document.querySelector("#modal-editar")

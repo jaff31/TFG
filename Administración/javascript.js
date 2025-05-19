@@ -41,19 +41,27 @@ async function mostrarDetallesTarea(id){
     const modal = document.querySelector("#modal-consultar #modal-contenido")
     
     const pId = document.createElement("P") 
-    pId.textContent = "ID: "+json.id
+    pId.innerHTML = "<strong>ID: </strong>"+json.id
     modal.appendChild(pId)
 
     const pNombre = document.createElement("P") 
-    pNombre.textContent = "Nombre: "+json.nombre
+    pNombre.innerHTML = "<strong>Nombre: </strong>"+json.nombre
     modal.appendChild(pNombre)
 
     const pDesc = document.createElement("P") 
-    pDesc.textContent = "Descripcion: "+json.descripcion
+    pDesc.innerHTML = "<strong>Descripcion: </strong>"+json.descripcion
     modal.appendChild(pDesc);
 
     const pFecha = document.createElement("P") 
-    pFecha.textContent = "Fecha creacion: "+json.fecha_creacion 
+    
+    const fecha = new Date(json.fecha_creacion);
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Meses van de 0 a 11
+    const anio = fecha.getFullYear();
+
+    const fechaFormateada = `${dia}-${mes}-${anio}`;
+
+    pFecha.innerHTML = "<strong>Fecha creacion: </strong>"+fechaFormateada;
     modal.appendChild(pFecha)
 
     
@@ -84,8 +92,8 @@ async function editarTarea(id){
        throw new Error(`Response status: ${response.status}`);
    }
    const json = await respuesta.json();
-  document.querySelector("#editNombre").value = json.nombre;
-  document.querySelector("#editDescripcion").value = json.descripcion;
+    document.querySelector("#editNombre").value = json.nombre;
+    document.querySelector("#editDescripcion").value = json.descripcion;
 
    const contenedor = document.querySelector("#modal-editar")
    contenedor.classList.add("modal")

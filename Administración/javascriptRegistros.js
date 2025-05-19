@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function(){
 
 })
-async function mostrarDetallesAlumno(id){
+async function mostrarDetallesRegistro(id){
     
-    console.log("Prueba"+id)
+    document.body.classList.add("modal-abierto");
+
     const respuesta = await fetch("http://localhost:8080/api/registro/"+id);
     if(!respuesta.ok){
         throw new Error(`Response status: ${response.status}`);
@@ -12,27 +13,35 @@ async function mostrarDetallesAlumno(id){
     const modal = document.querySelector("#modal-consultar #modal-contenido")
     
     const pId = document.createElement("P") 
-    pId.textContent = "ID: "+json.id
+    pId.innerHTML = "<strong>ID: </strong>"+json.id
     modal.appendChild(pId)
 
     const pNombre = document.createElement("P") 
-    pNombre.textContent = "Tarea: "+json.idTarea.nombre
+    pNombre.innerHTML = "<strong>Tarea: </strong>"+json.idTarea.nombre
     modal.appendChild(pNombre)
 
     const pAlum = document.createElement("P") 
-    pAlum.textContent = "Alumno: "+json.idAlumno.nombre
+    pAlum.innerHTML = "<strong>Alumno:</strong> "+json.idAlumno.nombre
     modal.appendChild(pAlum)
 
     const pProgreso = document.createElement("P") 
-    pProgreso.textContent = "Progreso: "+json.progreso +"%"
+    pProgreso.innerHTML = "<strong>Progreso:</strong> "+json.progreso +"%"
     modal.appendChild(pProgreso);
 
     const pDesc = document.createElement("P") 
-    pDesc.textContent = "Descripcion: "+json.descripcion 
+    pDesc.innerHTML = "<strong>Descripcion: </strong>"+json.descripcion 
     modal.appendChild(pDesc)
 
     const pFecha = document.createElement("P") 
-    pFecha.textContent = "Fecha creacion: "+json.fecha_creacion 
+    
+    const fecha = new Date(json.fecha_creacion);
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Meses van de 0 a 11
+    const anio = fecha.getFullYear();
+
+    const fechaFormateada = `${dia}-${mes}-${anio}`;
+
+    pFecha.innerHTML = "<strong>Fecha creacion: </strong>"+fechaFormateada;
     modal.appendChild(pFecha)
 
     
@@ -42,7 +51,7 @@ async function mostrarDetallesAlumno(id){
 
 }
 function cerrarModal(cerrar){
-    console.log(cerrar)
+
     const modalCerrar = document.querySelector(cerrar)
     const detalles_borrar = modalCerrar.querySelectorAll('P')
     detalles_borrar.forEach(p => {
@@ -50,10 +59,12 @@ function cerrarModal(cerrar){
     });
     modalCerrar.classList.remove('modal')
     modalCerrar.classList.add('hide')
+    document.body.classList.add("modal-abierto");
 }
-async function editarAlumno(id){
+async function editarRegistro(id){
+
    const form = document.querySelector("#formulario-editar")
-   form.setAttribute("onsubmit","editAlumno("+id+")")
+   form.setAttribute("onsubmit","editRegistro("+id+")")
    const contenedor = document.querySelector("#modal-editar")
    contenedor.classList.add("modal")
    contenedor.classList.remove("hide")
@@ -62,32 +73,33 @@ async function editarAlumno(id){
         throw new Error(`Response status: ${response.status}`);
     }
     const json = await respuesta.json();
-    console.log(json.progreso)
     document.querySelector("#tareaRegistro").value = json.idTarea.id;
     document.querySelector("#alumnoRegistro").value = json.idAlumno.id;
     document.querySelector("#progresoRegistro").value = json.progreso;
     document.querySelector("#descripcionRegistro").value = json.descripcion;
-    const fecha =  json.fecha_creacion.split('T')[0]
+    const fecha =  json.fecha_creacion.split('T')[0];
     document.querySelector("#fechaActividadRegistro").value = fecha ;
 
 }
-async function editAlumno(id){
+async function editRegistro(id){
+    document.body.classList.add("modal-abierto");
+    event.preventDefault();
 
     const tarea = document.querySelector("#tareaRegistro").value;
-    const respuestaTarea = await fetch("http://localhost:8080/api/tareas/"+id);
-    const tareaJson = respuestaTarea.json();
+    console.log(tarea)
+    const respuestaTarea = await fetch("http://localhost:8080/api/tareas/"+tarea);
+    const tareaJson = await  respuestaTarea.json();
 
     const alumno = document.querySelector("#alumnoRegistro").value;
-    const respuestaAlumno = await fetch("http://localhost:8080/api/alumnos/"+id);
-    const alumnoJson = respuestaAlumno.json();
+    const respuestaAlumno = await fetch("http://localhost:8080/api/alumnos/"+alumno);
+    const alumnoJson = await  respuestaAlumno.json();
 
     const progreso = document.querySelector("#progresoRegistro").value;
     const desc = document.querySelector("#descripcionRegistro").value;
     const fecha = document.querySelector("#fechaActividadRegistro").value;
+    console.log(progreso)
     
-    event.preventDefault();
-
-    const fecha_cre =  json.fecha_creacion.split('T')[0]
+    const fecha_cre =  fecha.split('T')[0]
     const response = await fetch("http://localhost:8080/api/registro/"+id,{
         method:"PUT",
         headers: {
@@ -95,7 +107,7 @@ async function editAlumno(id){
           },
         body:JSON.stringify({
             "idTarea":tareaJson,
-            "idAlumno":respuestaAlumno,
+            "idAlumno":alumnoJson,
             "progreso":progreso,
             "descripcion":desc,
             "fecha_creacion":fecha_cre
@@ -106,12 +118,12 @@ async function editAlumno(id){
         throw new Error(`Response status: ${response.status}`);
     }
 
-    location.reload()
+    location.reload();
     
     
     
 }
-async function eliminarAlumno(id){
+async function eliminarRegistro(id){
     
     const response = await fetch("http://localhost:8080/api/registro/"+id,{
         method:"DELETE"

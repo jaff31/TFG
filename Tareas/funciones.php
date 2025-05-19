@@ -61,7 +61,7 @@ function addTarea(){
         $sql = "Insert INTO tareas(nombre,descripcion,fecha_creacion) values('$nombre','$descripcion','$fecha')";
         
         if(mysqli_query($db,$sql)){
-            header("Location:index.php");
+            header("Location:alumnos.php");
         }
 
         
