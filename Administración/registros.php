@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (empty($_SESSION['email'])) {
+        header("Location: ../index.php");  
+        exit();                         
+    }
     require 'funciones.php';
     $registros = getRegistros();
     $registros2 = getTareas();
@@ -15,10 +20,20 @@
     <title>Gestión de Tareas y Alumnos</title>
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+        <div class ="header-container">
+            <div class="perfil-usuario">
+                    <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                    <span><?php echo $_SESSION["email"]; ?></span>
+                    <button onclick="logout()" class="logout-btn">
+                        <span class="material-icons">logout</span>
+                    </button>
+                </div>
+                <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+        </div>
         <nav>
             <ul>
                 <li><a href="tareas.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
@@ -161,6 +176,6 @@
     </div>
 
     <script src="javascriptRegistros.js"></script>
-    <script src="validacion.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

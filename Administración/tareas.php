@@ -1,5 +1,11 @@
 <?php
     require 'funciones.php';
+    
+    session_start();
+    if (empty($_SESSION['email'])) {
+        header("Location: ../index.php");  
+        exit();                         
+    }
     $tareas = getTareas();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         addTarea();
@@ -16,10 +22,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
     <header>
-        <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+    <div class ="header-container">
+        <div class="perfil-usuario">
+                <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                <span><?php echo $_SESSION["email"]; ?></span>
+                <button onclick="logout()" class="logout-btn">
+                    <span class="material-icons">logout</span>
+                </button>
+            </div>
+            <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+    </div>
         <nav>
             <ul>
                 <li><a href="#" onclick="mostrarSeccion('tareas')">Tareas</a></li>
@@ -28,6 +45,7 @@
                 <li><a href="resumen.php" onclick="mostrarSeccion('resumen')">Resumen</a></li>
             </ul>
         </nav>
+        
     </header>
 
     <main>
@@ -64,7 +82,7 @@
                     </tbody>
                 </table>
             </div>
-            <form class="formulario-crear" onsubmit = checkTareas() method = 'POST'>
+            <form class="formulario-crear" method = 'POST'>
                 <h3>Crear Tarea</h3>
                 <input type="text" name = "nombre" id="nombreTarea" placeholder="Nombre" required>
                 <textarea id="descripcionTarea" name="descripcion" placeholder="Descripción" required></textarea>
@@ -98,6 +116,6 @@
     </div>
 
     <script src="javascript.js"></script>
-    <script src="validacion.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

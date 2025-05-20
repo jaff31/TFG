@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (empty($_SESSION['email'])) {
+        header("Location: ../index.php");  // o a la ruta de tu formulario de login
+        exit();                         // Importante: detiene la ejecución
+    }
     require 'funciones.php';
     $registros = getRegistros();
     $tareas = getTareas();
@@ -13,10 +18,20 @@
     <title>Gestión de Tareas y Alumnos</title>
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+    <div class ="header-container">
+        <div class="perfil-usuario">
+                <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                <span><?php echo $_SESSION["email"]; ?></span>
+                <button onclick="logout()" class="logout-btn">
+                    <span class="material-icons">logout</span>
+                </button>
+            </div>
+            <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+    </div>
         <nav>
             <ul>
                 <li><a href="tareas.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
@@ -32,7 +47,7 @@
         <section id="resumen" >
         <div class="resumen-cards">
             <div class="card">
-                <h3><i class="fas fa-tasks"></i> Tareas</h3>
+                <h3><i class="fas fa-clipboard-list"></i> Tareas</h3>
                 <p><?php echo mysqli_num_rows($tareas); ?></p>
             </div>
             <div class="card">
@@ -40,7 +55,7 @@
                 <p><?php echo mysqli_num_rows($alumnos); ?></p>
             </div>
             <div class="card">
-                <h3><i class="fas fa-clipboard-list"></i> Registros</h3>
+                <h3><i class="fas fa-file-alt"></i> Registros</h3>
                 <p><?php echo mysqli_num_rows($registros); ?></p>
             </div>
 </div>
@@ -49,6 +64,6 @@
     </main>
 
     <script src="javascriptRegistros.js"></script>
-    <script src="validacion.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

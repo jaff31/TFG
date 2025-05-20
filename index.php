@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if($isAdmin){
                 header("Location: Administración/tareas.php");
-            
+                
                 exit;
             }
             else if(!$isAdmin){

@@ -2,10 +2,14 @@ async function cargarInforme(){
 
     borrarListas()
 
-    const tarea = document.querySelector("#tarea-informe").value;
-    const fecha = document.querySelector("#fecha-informe").value;
+    const tarea = document.querySelector("#tarea-informe").value.trim();
+    const fecha = document.querySelector("#fecha-informe").value.trim();
 
-    console.log(tarea)
+    if (!fecha || !tarea) {
+        // Puedes usar alert o inyectar texto en un <span> de error
+        alert("Por favor, selecciona fecha y tarea antes de cargar el informe.");
+        return; // Salir sin ejecutar el fetch
+    }
 
     event.preventDefault();
 
