@@ -70,63 +70,78 @@ function addTarea(){
         echo $e;
     }
 }
-function addRegistro(){
-    
-
-        try{
-            require 'conexion.php';
-            $tarea = $_POST['tarea'];
-            $alumno = $_POST['alumno'];
-            $descripcion = $_POST['descripcion'];
-            $progreso = $_POST['progreso'];
-            $fecha = $_POST['fecha'];
-
-            if(empty(trim($progreso))){
-                header("Location: error.php?mensaje=El campo progreso no puede estar vacio");
-                return;
-            }
-            // $fecha_partes = explode('-', $fecha);
-            // $fecha_conv = $fecha_partes[2] . "-" . $fecha_partes[1] . "-" . $fecha_partes[0];
-            $sql = "Insert INTO registros(id_tarea,id_alumno,progreso,descripcion,fecha_creacion) 
-                    values('$tarea','$alumno','$progreso','$descripcion','$fecha')";
-            
-            if(mysqli_query($db,$sql)){
-                header("Location:registros.php");
-            }
-        
-        
-    }catch(\Throwable $e){
-        echo 'Error ';
-        echo $fecha;
-        echo $e;
-    }
-}
-function addAlumno(){
-    
-    
-    try{
+function addRegistro() {
+    try {
         require 'conexion.php';
-        $nombre = $_POST['nombreAlumno'];
-        $apellido =$_POST['apellidoAlumno'];
-        $email = $_POST['emailAlumno'];
-        
-        $nomCompleto = "$nombre $apellido";
 
-        if(empty(trim($nombre)) || empty(trim($apellido)) ) {
-            header("Location: error.php?mensaje=Los campos nombre y apellido no pueden estar vacio");
+        $tarea = $_POST['tarea'] ?? '';
+        $alumno = $_POST['alumno'] ?? '';
+        $descripcion = $_POST['descripcion'] ?? '';
+        $progreso = $_POST['progreso'] ?? '';
+        $fecha = $_POST['fecha'] ?? '';
+
+        if (empty(trim($progreso))) {
+            header("Location: error.php?mensaje=El campo progreso no puede estar vacio");
             return;
         }
-        $fecha = date('y-m-d');
-        $sql = "Insert INTO alumno(nombre,email,fecha_creacion) values('$nomCompleto','$email','$fecha')";
-        
-        if(mysqli_query($db,$sql)){
-            header("Location:alumnos.php");
-         }
 
-        
-    }catch(\Throwable $e){
-        echo 'Error ';
-        echo $e;
+        $sql = "INSERT INTO registros (id_tarea, id_alumno, progreso, descripcion, fecha_creacion) 
+                VALUES (?, ?, ?, ?, ?)";
+
+        $stmt = $db->prepare($sql);
+        if ($stmt === false) {
+            throw new Exception("Error preparando la consulta: " . $db->error);
+        }
+
+        $stmt->bind_param("iisss", $tarea, $alumno, $progreso, $descripcion, $fecha);
+
+        if ($stmt->execute()) {
+            header("Location: registros.php");
+        } else {
+            throw new Exception("Error ejecutando la consulta: " . $stmt->error);
+        }
+
+        $stmt->close();
+    } catch (\Throwable $e) {
+        echo 'Error: ' . $e->getMessage();
     }
 }
+
+function addAlumno() {
+    try {
+        require 'conexion.php';
+
+        $nombre = $_POST['nombreAlumno'] ?? '';
+        $apellido = $_POST['apellidoAlumno'] ?? '';
+        $email = $_POST['emailAlumno'] ?? '';
+        
+        if (empty(trim($nombre)) || empty(trim($apellido))) {
+            header("Location: error.php?mensaje=Los campos nombre y apellido no pueden estar vacíos");
+            return;
+        }
+
+        $nomCompleto = "$nombre $apellido";
+        $fecha = date('Y-m-d');
+
+        $sql = "INSERT INTO alumno (nombre, email, fecha_creacion) VALUES (?, ?, ?)";
+        $stmt = $db->prepare($sql);
+
+        if ($stmt === false) {
+            throw new Exception("Error preparando la consulta: " . $db->error);
+        }
+
+        $stmt->bind_param("sss", $nomCompleto, $email, $fecha);
+
+        if ($stmt->execute()) {
+            header("Location: alumnos.php");
+        } else {
+            throw new Exception("Error ejecutando la consulta: " . $stmt->error);
+        }
+
+        $stmt->close();
+    } catch (\Throwable $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
+
 ?>

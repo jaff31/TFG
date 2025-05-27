@@ -45,31 +45,6 @@ function getRegistros(){
 
     }
 }
-function addTarea(){
-    
-
-    try{
-        require '../conexion.php';
-        $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-
-        if(empty(trim($nombre))){
-            header("Location: error.php?mensaje=El campo nombre no puede estar vacio");
-            return;
-        }
-        $fecha = date('y-m-d');
-        $sql = "Insert INTO tareas(nombre,descripcion,fecha_creacion) values('$nombre','$descripcion','$fecha')";
-        
-        if(mysqli_query($db,$sql)){
-            header("Location:alumnos.php");
-        }
-
-        
-    }catch(\Throwable $e){
-        echo 'Error ';
-        echo $e;
-    }
-}
 function addRegistro(){
     
 
@@ -108,33 +83,5 @@ function getParams(){
 
     return [$fecha,$tarea];
 
-}
-function addAlumno(){
-    
-    
-    try{
-        require '../conexion.php';
-        $nombre = $_POST['nombreAlumno'];
-        $apellido =$_POST['apellidoAlumno'];
-        $email = $_POST['emailAlumno'];
-        
-        $nomCompleto = "$nombre $apellido";
-
-        if(empty(trim($nombre)) || empty(trim($apellido)) ) {
-            header("Location: error.php?mensaje=Los campos nombre y apellido no pueden estar vacio");
-            return;
-        }
-        $fecha = date('y-m-d');
-        $sql = "Insert INTO alumno(nombre,email,fecha_creacion) values('$nomCompleto','$email','$fecha')";
-        
-        if(mysqli_query($db,$sql)){
-            header("Location:alumnos.php");
-         }
-
-        
-    }catch(\Throwable $e){
-        echo 'Error ';
-        echo $e;
-    }
 }
 ?>
