@@ -31,10 +31,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="tareas.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
-                <li><a href="alumnos.php" onclick="mostrarSeccion('alumnos')">Alumnos</a></li>
-                <li><a href="#" onclick="mostrarSeccion('registro')">Registro</a></li>
-                <li><a href="resumen.php" onclick="mostrarSeccion('resumen')">Resumen</a></li>
+                <li><a href="tareas.php"  >Tareas</a></li>
+                <li><a href="alumnos.php"  >Alumnos</a></li>
+                <li><a href="#"  >Registro</a></li>
+                <li><a href="resumen.php"  >Resumen</a></li>
             </ul>
         </nav>
     </header>

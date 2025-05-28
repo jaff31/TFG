@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function logout() {
-    window.location.href = '../logout.php';
+    sessionStorage.clear();
+    window.location.href = '../index.php';
 }
 async function saveToken(email, clave) {
     try {

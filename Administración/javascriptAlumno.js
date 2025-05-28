@@ -1,39 +1,17 @@
 document.addEventListener('DOMContentLoaded', function(){
 
 })
-/*
-function crearTarea(event){
-    
-    event.preventDefault();
-
-    const nombre = document.querySelector('#nombreTarea').value;
-    const descripcion = document.querySelector('#descripcionTarea').value;
-    const id = document.querySelectorAll('tr').length ;
-
-    const table = document.querySelector('table')
-    
-    const tr = document.createElement('TR')
-    const tdId = document.createElement('TD')
-    tdId.textContent = id
-    tr.appendChild(tdId)
-
-    const tdNombre = document.createElement('TD')
-    tdNombre.textContent = nombre
-    tr.appendChild(tdNombre)
-
-
-    const tdFecha = document.createElement('TD')
-    tdFecha.textContent = new Date().toLocaleDateString('en-CA')
-    tr.appendChild(tdFecha)
-
-    const tdBotones = document.createElement('TD')
-
-    table.appendChild(tr)
-}
-*/
+function authHeaders(contentType = "application/json") {
+    const token = sessionStorage.getItem("token");
+    return token
+      ? { "Content-Type": contentType, "Authorization": `Bearer ${token}` }
+      : { "Content-Type": contentType };
+  }
 async function mostrarDetallesAlumno(id){
     
-    const respuesta = await fetch("http://localhost:8080/api/alumnos/"+id);
+    const respuesta = await fetch("http://localhost:8080/api/alumnos/"+id,{
+        headers:authHeaders(),
+    });
     if(!respuesta.ok){
         throw new Error(`Response status: ${response.status}`);
     }
@@ -86,7 +64,9 @@ async function editarAlumno(id){
    form.setAttribute("onsubmit","editAlumno("+id+")")
    const contenedor = document.querySelector("#modal-editar")
    
-   const respuesta = await fetch("http://localhost:8080/api/alumnos/"+id);
+   const respuesta = await fetch("http://localhost:8080/api/alumnos/"+id,{
+    headers:authHeaders(),
+   });
 
     
 
@@ -113,6 +93,7 @@ async function editAlumno(id){
     const response = await fetch("http://localhost:8080/api/alumnos/"+id,{
         method:"PUT",
         headers: {
+            ...authHeaders(),
             "Content-Type": "application/json",
           },
         body:JSON.stringify({
@@ -133,6 +114,7 @@ async function editAlumno(id){
 async function eliminarAlumno(id){
     
     const response = await fetch("http://localhost:8080/api/alumnos/"+id,{
+        headers:authHeaders(),
         method:"DELETE"
     });
 

@@ -1,3 +1,10 @@
+function authHeaders(contentType = "application/json") {
+    const token = sessionStorage.getItem("token");
+    return token
+      ? { "Content-Type": contentType, "Authorization": `Bearer ${token}` }
+      : { "Content-Type": contentType };
+  }
+
 async function cargarInforme(){
 
     borrarListas()
@@ -6,14 +13,15 @@ async function cargarInforme(){
     const fecha = document.querySelector("#fecha-informe").value.trim();
 
     if (!fecha || !tarea) {
-        // Puedes usar alert o inyectar texto en un <span> de error
         alert("Por favor, selecciona fecha y tarea antes de cargar el informe.");
-        return; // Salir sin ejecutar el fetch
+        return; 
     }
 
     event.preventDefault();
 
-    const response = await fetch("http://localhost:8080/api/registro/filtro/"+tarea+"/"+fecha);
+    const response = await fetch("http://localhost:8080/api/registro/filtro/"+tarea+"/"+fecha,{
+        headers:authHeaders(),
+    });
     if(response.ok ){
         const json = await  response.json();
         const aprobado = document.querySelector("#lista-superados")

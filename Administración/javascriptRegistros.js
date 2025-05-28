@@ -1,11 +1,19 @@
 document.addEventListener('DOMContentLoaded', function(){
 
 })
+function authHeaders(contentType = "application/json") {
+    const token = sessionStorage.getItem("token");
+    return token
+      ? { "Content-Type": contentType, "Authorization": `Bearer ${token}` }
+      : { "Content-Type": contentType };
+  }
 async function mostrarDetallesRegistro(id){
     
     document.body.classList.add("modal-abierto");
 
-    const respuesta = await fetch("http://localhost:8080/api/registro/"+id);
+    const respuesta = await fetch("http://localhost:8080/api/registro/"+id,{
+        headers:authHeaders(),
+    });
     if(!respuesta.ok){
         throw new Error(`Response status: ${response.status}`);
     }
@@ -68,7 +76,9 @@ async function editarRegistro(id){
    const contenedor = document.querySelector("#modal-editar")
    contenedor.classList.add("modal")
    contenedor.classList.remove("hide")
-   const respuesta = await fetch("http://localhost:8080/api/registro/"+id);
+   const respuesta = await fetch("http://localhost:8080/api/registro/"+id,{
+    headers:authHeaders(),
+   });
     if(!respuesta.ok){
         throw new Error(`Response status: ${response.status}`);
     }
@@ -87,11 +97,15 @@ async function editRegistro(id){
 
     const tarea = document.querySelector("#tareaRegistro").value;
     console.log(tarea)
-    const respuestaTarea = await fetch("http://localhost:8080/api/tareas/"+tarea);
+    const respuestaTarea = await fetch("http://localhost:8080/api/tareas/"+tarea,{
+        headers:authHeaders(),
+    });
     const tareaJson = await  respuestaTarea.json();
 
     const alumno = document.querySelector("#alumnoRegistro").value;
-    const respuestaAlumno = await fetch("http://localhost:8080/api/alumnos/"+alumno);
+    const respuestaAlumno = await fetch("http://localhost:8080/api/alumnos/"+alumno,{
+        headers:authHeaders(),
+    });
     const alumnoJson = await  respuestaAlumno.json();
 
     const progreso = document.querySelector("#progresoRegistro").value;
@@ -103,6 +117,7 @@ async function editRegistro(id){
     const response = await fetch("http://localhost:8080/api/registro/"+id,{
         method:"PUT",
         headers: {
+            ...authHeaders(),
             "Content-Type": "application/json",
           },
         body:JSON.stringify({
@@ -126,6 +141,7 @@ async function editRegistro(id){
 async function eliminarRegistro(id){
     
     const response = await fetch("http://localhost:8080/api/registro/"+id,{
+        headers:authHeaders(),
         method:"DELETE"
     });
 
