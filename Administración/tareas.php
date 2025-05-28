@@ -1,11 +1,5 @@
 <?php
     require 'funciones.php';
-    
-    session_start();
-    if (empty($_SESSION['email'])) {
-        header("Location: ../index.php");  
-        exit();                         
-    }
     $tareas = getTareas();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         addTarea();
@@ -30,7 +24,7 @@
     <div class ="header-container">
         <div class="perfil-usuario">
                 <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
-                <span><?php echo $_SESSION["email"]; ?></span>
+                <span class ="user-email"></span>
                 <button onclick="logout()" class="logout-btn">
                     <span class="material-icons">logout</span>
                 </button>

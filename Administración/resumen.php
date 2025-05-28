@@ -1,9 +1,5 @@
 <?php
-    session_start();
-    if (empty($_SESSION['email'])) {
-        header("Location: ../index.php");  // o a la ruta de tu formulario de login
-        exit();                         // Importante: detiene la ejecución
-    }
+   
     require 'funciones.php';
     $registros = getRegistros();
     $tareas = getTareas();
@@ -25,7 +21,7 @@
     <div class ="header-container">
         <div class="perfil-usuario">
                 <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
-                <span><?php echo $_SESSION["email"]; ?></span>
+                <span class ="user-email"></span>
                 <button onclick="logout()" class="logout-btn">
                     <span class="material-icons">logout</span>
                 </button>

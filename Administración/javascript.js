@@ -1,38 +1,17 @@
 document.addEventListener('DOMContentLoaded', function(){
 
 })
-function crearTarea(event){
-    
-    event.preventDefault();
-
-    const nombre = document.querySelector('#nombreTarea').value;
-    const descripcion = document.querySelector('#descripcionTarea').value;
-    const id = document.querySelectorAll('tr').length ;
-
-    const table = document.querySelector('table')
-    
-    const tr = document.createElement('TR')
-    const tdId = document.createElement('TD')
-    tdId.textContent = id
-    tr.appendChild(tdId)
-
-    const tdNombre = document.createElement('TD')
-    tdNombre.textContent = nombre
-    tr.appendChild(tdNombre)
-
-
-    const tdFecha = document.createElement('TD')
-    tdFecha.textContent = new Date().toLocaleDateString('en-CA')
-    tr.appendChild(tdFecha)
-
-    const tdBotones = document.createElement('TD')
-
-    table.appendChild(tr)
-}
+function authHeaders(contentType = "application/json") {
+    const token = sessionStorage.getItem("token");
+    return token
+      ? { "Content-Type": contentType, "Authorization": `Bearer ${token}` }
+      : { "Content-Type": contentType };
+  }
 async function mostrarDetallesTarea(id){
     
-    console.log("Prueba"+id)
-    const respuesta = await fetch("http://localhost:8080/api/tareas/"+id);
+    const respuesta = await fetch("http://localhost:8080/api/tareas/"+id,{
+        headers:authHeaders()
+    });
     if(!respuesta.ok){
         throw new Error(`Response status: ${response.status}`);
     }
@@ -42,7 +21,7 @@ async function mostrarDetallesTarea(id){
     
     const pId = document.createElement("P") 
     pId.innerHTML = "<strong>ID: </strong>"+json.id
-    modal.appendChild(pId)
+    modal.appendChild(pId)  
 
     const pNombre = document.createElement("P") 
     pNombre.innerHTML = "<strong>Nombre: </strong>"+json.nombre
@@ -84,7 +63,9 @@ async function editarTarea(id){
    const form = document.querySelector("#formulario-editar")
     form.setAttribute("onsubmit","editTarea("+id+")")
     
-    const respuesta = await fetch("http://localhost:8080/api/tareas/"+id);
+    const respuesta = await fetch("http://localhost:8080/api/tareas/"+id,{
+        headers:authHeaders()
+    });
 
     
 
@@ -108,7 +89,9 @@ async function editTarea(id){
     const response = await fetch("http://localhost:8080/api/tareas/"+id,{
         method:"PUT",
         headers: {
+            ...authHeaders(),
             "Content-Type": "application/json",
+            
           },
         body:JSON.stringify({
             "nombre":nombre,
@@ -128,7 +111,8 @@ async function editTarea(id){
 async function eliminarTarea(id){
     
     const response = await fetch("http://localhost:8080/api/tareas/"+id,{
-        method:"DELETE"
+        method:"DELETE",
+        headers:authHeaders(),
     });
 
     if (!response.ok) {
