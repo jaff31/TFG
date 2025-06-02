@@ -1,5 +1,5 @@
 <?php
-    require 'funciones.php';
+    require './funciones.php';
     $tareas = getTareas();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         addTarea();

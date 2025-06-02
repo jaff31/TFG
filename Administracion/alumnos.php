@@ -1,7 +1,7 @@
 <?php
     
 
-    require 'funciones.php';
+    require './funciones.php';
     $alumnos = getAlumnos();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         addAlumno();

@@ -37,7 +37,7 @@ async function saveToken(email, clave) {
             sessionStorage.setItem("email",correo);
             if (rol === "admin") {
                 console.log("admin")
-                window.location.href = "Administración/tareas.php";
+                window.location.href = "Administracion/tareas.php";
             } else {
                 window.location.href = "Tareas/alumnos.php";
             }

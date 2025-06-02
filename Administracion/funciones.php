@@ -2,7 +2,7 @@
 
 function getTareas(){
     try{
-        require 'conexion.php';
+        require '../conexion.php';
 
         $query = 'Select * from tareas';
         
@@ -17,7 +17,8 @@ function getTareas(){
 }
 function getAlumnos(){
     try{
-        require 'conexion.php';
+        require '../conexion.php';
+
 
         $query = 'Select * from alumno';
         
@@ -32,7 +33,8 @@ function getAlumnos(){
 }
 function getRegistros(){
     try{
-        require 'conexion.php';
+        require '../conexion.php';
+
 
         $query = 'Select id,(Select nombre from tareas t where r.id_tarea = t.id) as nombreTarea,(Select nombre from alumno a where r.id_alumno = a.id) as nombreAlumno,progreso,fecha_creacion from registros r';
         
@@ -49,7 +51,8 @@ function addTarea(){
     
 
     try{
-        require 'conexion.php';
+        require '../conexion.php';
+
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
 
@@ -72,7 +75,8 @@ function addTarea(){
 }
 function addRegistro() {
     try {
-        require 'conexion.php';
+        require '../conexion.php';
+
 
         $tarea = $_POST['tarea'] ?? '';
         $alumno = $_POST['alumno'] ?? '';
@@ -109,7 +113,8 @@ function addRegistro() {
 
 function addAlumno() {
     try {
-        require 'conexion.php';
+        require '../conexion.php';
+
 
         $nombre = $_POST['nombreAlumno'] ?? '';
         $apellido = $_POST['apellidoAlumno'] ?? '';
