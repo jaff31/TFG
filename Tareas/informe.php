@@ -31,7 +31,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#tareas" >Tareas</a></li>
+                <li><a href="alumnos.php" >Tareas</a></li>
                 <li><a href="registro.php">Registro</a></li>
                 <li><a href="informe.php" class="active">Informe</a></li>
             </ul>

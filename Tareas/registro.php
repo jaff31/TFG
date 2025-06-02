@@ -31,8 +31,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#tareas" >Tareas</a></li>
-                <li><a href="registro.php" class="active">Registro</a></li>
+                <li><a href="alumnos.php" >Tareas</a></li>
+                <li><a href="#" class="active">Registro</a></li>
                 <li><a href="informe.php">Informe</a></li>
             </ul>
         </nav>
