@@ -32,7 +32,7 @@
         <nav>
             <ul>
                 <li><a href="tareas.php" >Tareas</a></li>
-                <li><a href="#" >Alumnos</a></li>
+                <li><a class ="active" href="#" >Alumnos</a></li>
                 <li><a href="registros.php" >Registro</a></li>
                 <li><a href="resumen.php">Resumen</a></li>
             </ul>

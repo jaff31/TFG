@@ -227,7 +227,9 @@
         margin-right: 8px;
         color: #555;
     }
-
+    .active{
+        color:yellow;
+    }
     .perfil-usuario {
         display: flex;
         align-items: center;

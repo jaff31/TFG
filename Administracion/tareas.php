@@ -33,7 +33,7 @@
     </div>
         <nav>
             <ul>
-                <li><a href="#"  >Tareas</a></li>
+                <li><a class ="active" href="#"  >Tareas</a></li>
                 <li><a href="alumnos.php"  >Alumnos</a></li>
                 <li><a href="registros.php"  >Registro</a></li>
                 <li><a href="resumen.php"  >Resumen</a></li>
