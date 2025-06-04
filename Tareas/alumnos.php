@@ -1,5 +1,6 @@
 <?php
-    require 'funciones.php';
+   
+    require './funciones.php';
     $registros = getRegistros();
     $tareas = getTareas();
     $alumnos = getAlumnos();
@@ -14,9 +15,18 @@
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+        <div>
+        <div class="perfil-usuario">
+                <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                <span class ="user-email"></span>
+                <button onclick="logout()" class="logout-btn">
+                    <span class="material-icons">logout</span>
+                </button>
+        </div>
         <nav>
             <ul>
                 <li><a href="#tareas" class="active">Tareas</a></li>
@@ -24,7 +34,7 @@
                 <li><a href="informe.php">Informe</a></li>
             </ul>
         </nav>
-
+        </div>
         <section id="tareas" class="content-section">
             <h2>Tareas y Alumnos <i class="fas fa-tasks"></i></h2>
             <div class="columnas">
@@ -132,6 +142,6 @@
     </div>
 
     <script src="javascript.js"></script>
-    <script src="validacion.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

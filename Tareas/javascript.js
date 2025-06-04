@@ -1,15 +1,27 @@
+function authHeaders(contentType = "application/json") {
+    const token = sessionStorage.getItem("token");
+    return token
+      ? { "Content-Type": contentType, "Authorization": `Bearer ${token}` }
+      : { "Content-Type": contentType };
+  }
+
 async function cargarInforme(){
 
     borrarListas()
 
-    const tarea = document.querySelector("#tarea-informe").value;
-    const fecha = document.querySelector("#fecha-informe").value;
+    const tarea = document.querySelector("#tarea-informe").value.trim();
+    const fecha = document.querySelector("#fecha-informe").value.trim();
 
-    console.log(tarea)
+    if (!fecha || !tarea) {
+        alert("Por favor, selecciona fecha y tarea antes de cargar el informe.");
+        return; 
+    }
 
     event.preventDefault();
 
-    const response = await fetch("http://localhost:8080/api/registro/filtro/"+tarea+"/"+fecha);
+    const response = await fetch("http://localhost:8080/api/registro/filtro/"+tarea+"/"+fecha,{
+        headers:authHeaders(),
+    });
     if(response.ok ){
         const json = await  response.json();
         const aprobado = document.querySelector("#lista-superados")

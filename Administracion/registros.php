@@ -1,5 +1,5 @@
 <?php
-    require 'funciones.php';
+    require './funciones.php';
     $registros = getRegistros();
     $registros2 = getTareas();
     $registros3 = getAlumnos();
@@ -15,16 +15,26 @@
     <title>Gestión de Tareas y Alumnos</title>
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+        <div class ="header-container">
+            <div class="perfil-usuario">
+                    <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                    <span class ="user-email"></span>
+                    <button onclick="logout()" class="logout-btn">
+                        <span class="material-icons">logout</span>
+                    </button>
+                </div>
+                <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
-                <li><a href="alumnos.php" onclick="mostrarSeccion('alumnos')">Alumnos</a></li>
-                <li><a href="#" onclick="mostrarSeccion('registro')">Registro</a></li>
-                <li><a href="resumen.php" onclick="mostrarSeccion('resumen')">Resumen</a></li>
+                <li><a href="tareas.php"  >Tareas</a></li>
+                <li><a href="alumnos.php"  >Alumnos</a></li>
+                <li><a class ="active" href="#"  >Registro</a></li>
+                <li><a href="resumen.php"  >Resumen</a></li>
             </ul>
         </nav>
     </header>
@@ -54,9 +64,9 @@
                                     <td><?php echo $servicio['nombreAlumno']?></td>
                                     <td><?php echo $servicio['fecha_creacion']?></td>
                                     <td>
-                                        <button class="btn-consultar" onclick="mostrarDetallesAlumno(<?php echo $servicio['id']?>)">Consultar</button>
-                                        <button class="btn-editar" onclick="editarAlumno(<?php echo $servicio['id']?>)">Editar</button>
-                                        <button class="btn-eliminar" onclick="eliminarAlumno(<?php echo $servicio['id']?>)">Eliminar</button>
+                                        <button class="btn-consultar" onclick="mostrarDetallesRegistro(<?php echo $servicio['id']?>)">Consultar</button>
+                                        <button class="btn-editar" onclick="editarRegistro(<?php echo $servicio['id']?>)">Editar</button>
+                                        <button class="btn-eliminar" onclick="eliminarRegistro(<?php echo $servicio['id']?>)">Eliminar</button>
                                     </td>
                                 </tr>
 
@@ -119,7 +129,8 @@
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal('#modal-editar')">&times;</span>
             <h2>Editar</h2>
-            <form id="formulario-editar" method='PUT'>           
+            <form class ="form-edit" id="formulario-editar" method='PUT'>
+            <label>Seleccionar Tarea</label>           
             <select name = "tarea" id="tareaRegistro" required>
                     <option  disabled selected value="" >Seleccionar Tarea</option>
                     <?php  
@@ -133,6 +144,7 @@
                          }
                         ?>
                 </select>
+                <label>Seleccionar Alumno</label> 
                 <select name = "alumno" id="alumnoRegistro" required>
                     <option disabled selected value="">Seleccionar Alumno</option>
                     <?php  
@@ -147,15 +159,18 @@
                          }
                         ?>
                 </select>
+                <label>Progreso</label> 
                 <input name="progreso" type="number" id="progresoRegistro" placeholder="Progreso" required>
-                <textarea name ="descripcion" id="descripcionRegistro" placeholder="Descripción" required></textarea>
+                <label>Descripcion de la tarea</label> 
+                <textarea name ="descripcion" id="descripcionRegistro" placeholder="Descripción"></textarea>
+                <label>Fecha</label> 
                 <input name="fecha" type="date" id="fechaActividadRegistro" required>
-                <button type="submit">Crear</button>
+                <button type="submit">Guardar</button>
             </form>
         </div>
     </div>
 
     <script src="javascriptRegistros.js"></script>
-    <script src="validacion.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

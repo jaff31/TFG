@@ -1,4 +1,5 @@
 <?php
+    
     require 'funciones.php';
     $registros = getRegistros();
     $tareas = getTareas();
@@ -16,16 +17,26 @@
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+    <div>
+        <div class="perfil-usuario">
+                <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                <span class ="user-email"></span>
+                <button onclick="logout()" class="logout-btn">
+                    <span class="material-icons">logout</span>
+                </button>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.php" >Tareas</a></li>
+                <li><a href="alumnos.php" >Tareas</a></li>
                 <li><a href="registro.php">Registro</a></li>
-                <li><a href="#informe" class="active">Informe</a></li>
+                <li><a href="informe.php" class="active">Informe</a></li>
             </ul>
         </nav>
+        </div>
 
         <section id="informe" class="content-section" >
             <h2>Informe Diario <i class="fas fa-chart-bar"></i></h2>
@@ -54,8 +65,8 @@
                     </select>
                     <span id="error-tarea-informe" class="error-message"></span>
                 </div>
-                </form>
                 <button type="submit" onclick="cargarInforme()">Cargar Informe</button>
+                </form>
             </div>
             <div id="resultado-informe">
                 <div id="superados">
@@ -71,5 +82,6 @@
     </div>
 
     <script src="javascript.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

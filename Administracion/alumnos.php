@@ -1,5 +1,7 @@
 <?php
-    require 'funciones.php';
+    
+
+    require './funciones.php';
     $alumnos = getAlumnos();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         addAlumno();
@@ -13,16 +15,26 @@
     <title>Gestión de Tareas y Alumnos</title>
     <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 </head>
 <body>
     <header>
-        <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+        <div class ="header-container">
+            <div class="perfil-usuario">
+                    <img src="../Tareas/img/default-pp.jpg" alt="Foto de perfil">
+                    <span class ="user-email"></span>
+                    <button onclick="logout()" class="logout-btn">
+                        <span class="material-icons">logout</span>
+                    </button>
+                </div>
+                <h1>Gestión de Tareas y Alumnos <i class="fas fa-tasks"></i></h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.php" onclick="mostrarSeccion('tareas')">Tareas</a></li>
-                <li><a href="#" onclick="mostrarSeccion('alumnos')">Alumnos</a></li>
-                <li><a href="registros.php" onclick="mostrarSeccion('registro')">Registro</a></li>
-                <li><a href="resumen.php" onclick="mostrarSeccion('resumen')">Resumen</a></li>
+                <li><a href="tareas.php" >Tareas</a></li>
+                <li><a class ="active" href="#" >Alumnos</a></li>
+                <li><a href="registros.php" >Registro</a></li>
+                <li><a href="resumen.php">Resumen</a></li>
             </ul>
         </nav>
     </header>
@@ -30,7 +42,7 @@
     <main>
 
         <section id="alumnos">
-            <h2>Alumnos <i class="fas fa-users"></i></h2>
+            <h2>Alumnos <i class="fas fa-user-graduate"></i></h2>
             <div class="lista-alumnos">
                 <table>
                     <thead>
@@ -73,14 +85,6 @@
             </form>
         </section>
 
-        <section id="resumen" class="seccion-oculta">
-            <h2>Resumen <i class="fas fa-chart-bar"></i></h2>
-            <div class="resumen-datos">
-                <p>Total Tareas: <span id="totalTareas">3</span></p>
-                <p>Total Alumnos: <span id="totalAlumnos">3</span></p>
-                <p>Total Registros: <span id="totalRegistros">3</span></p>
-            </div>
-        </section>
     </main>
 
     <!-- Modales -->
@@ -96,9 +100,12 @@
         <div class="modal-contenido">
             <span class="cerrar" onclick="cerrarModal('#modal-editar')">&times;</span>
             <h2>Editar</h2>
-            <form id="formulario-editar" method='PUT'>           
-               <input type="text" name="nombreAlumno" id="nom" placeholder="Nombre" >
+            <form class ="form-edit" id="formulario-editar" method='PUT'>
+                <label>Nombre del alumno</label>           
+                <input type="text" name="nombreAlumno" id="nom" placeholder="Nombre" >
+                <label>Apellido del alumno</label> 
                 <input type="text" name="apellidoAlumno" id="ape" placeholder="Apellido" >
+                <label>Email del alumno</label> 
                 <input type="email" name="emailAlumno" id="emailA" placeholder="Email" >
                 <button type="submit">Guardar</button>
             </form>
@@ -106,6 +113,6 @@
     </div>
 
     <script src="javascriptAlumno.js"></script>
-    <script src="validacion.js"></script>
+    <script src="../session.js"></script>
 </body>
 </html>

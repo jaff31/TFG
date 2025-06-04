@@ -8,6 +8,6 @@
 <body>
     <p> ERROR</p></br>
     <p><?php echo $_GET['mensaje'] ?></p>
-    <a href = "index.php">Volver </a>
+    <a href = "tareas.php">Volver </a>
 </body>
 </html>
