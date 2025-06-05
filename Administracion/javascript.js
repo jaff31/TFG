@@ -9,7 +9,7 @@ function authHeaders(contentType = "application/json") {
   }
 async function mostrarDetallesTarea(id){
     
-    const respuesta = await fetch("http://localhost:8080/api/tareas/"+id,{
+    const respuesta = await fetch("http://52.201.50.4:8080/api/tareas/"+id,{
         headers:authHeaders()
     });
     if(!respuesta.ok){
@@ -22,6 +22,7 @@ async function mostrarDetallesTarea(id){
     const pId = document.createElement("P") 
     pId.innerHTML = "<strong>ID: </strong>"+json.id
     modal.appendChild(pId)  
+
 
     const pNombre = document.createElement("P") 
     pNombre.innerHTML = "<strong>Nombre: </strong>"+json.nombre
@@ -63,7 +64,7 @@ async function editarTarea(id){
    const form = document.querySelector("#formulario-editar")
     form.setAttribute("onsubmit","editTarea("+id+")")
     
-    const respuesta = await fetch("http://localhost:8080/api/tareas/"+id,{
+    const respuesta = await fetch("http://52.201.50.4:8080/api/tareas/"+id,{
         headers:authHeaders()
     });
 
@@ -86,7 +87,7 @@ async function editTarea(id){
     const desc = document.querySelector("#editDescripcion").value;
     
     event.preventDefault()
-    const response = await fetch("http://localhost:8080/api/tareas/"+id,{
+    const response = await fetch("http://52.201.50.4:8080/api/tareas/"+id,{
         method:"PUT",
         headers: {
             ...authHeaders(),
@@ -110,7 +111,7 @@ async function editTarea(id){
 }
 async function eliminarTarea(id){
     
-    const response = await fetch("http://localhost:8080/api/tareas/"+id,{
+    const response = await fetch("http://52.201.50.4:8080/api/tareas/"+id,{
         method:"DELETE",
         headers:authHeaders(),
     });

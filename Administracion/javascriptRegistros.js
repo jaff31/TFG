@@ -11,7 +11,7 @@ async function mostrarDetallesRegistro(id){
     
     document.body.classList.add("modal-abierto");
 
-    const respuesta = await fetch("http://localhost:8080/api/registro/"+id,{
+    const respuesta = await fetch("http://52.201.50.4:8080/api/registro/"+id,{
         headers:authHeaders(),
     });
     if(!respuesta.ok){
@@ -76,7 +76,7 @@ async function editarRegistro(id){
    const contenedor = document.querySelector("#modal-editar")
    contenedor.classList.add("modal")
    contenedor.classList.remove("hide")
-   const respuesta = await fetch("http://localhost:8080/api/registro/"+id,{
+   const respuesta = await fetch("http://52.201.50.4:8080/api/registro/"+id,{
     headers:authHeaders(),
    });
     if(!respuesta.ok){
@@ -97,13 +97,13 @@ async function editRegistro(id){
 
     const tarea = document.querySelector("#tareaRegistro").value;
     console.log(tarea)
-    const respuestaTarea = await fetch("http://localhost:8080/api/tareas/"+tarea,{
+    const respuestaTarea = await fetch("http://52.201.50.4:8080/api/tareas/"+tarea,{
         headers:authHeaders(),
     });
     const tareaJson = await  respuestaTarea.json();
 
     const alumno = document.querySelector("#alumnoRegistro").value;
-    const respuestaAlumno = await fetch("http://localhost:8080/api/alumnos/"+alumno,{
+    const respuestaAlumno = await fetch("http://52.201.50.4:8080/api/alumnos/"+alumno,{
         headers:authHeaders(),
     });
     const alumnoJson = await  respuestaAlumno.json();
@@ -114,7 +114,7 @@ async function editRegistro(id){
     console.log(progreso)
     
     const fecha_cre =  fecha.split('T')[0]
-    const response = await fetch("http://localhost:8080/api/registro/"+id,{
+    const response = await fetch("http://52.201.50.4:8080/api/registro/"+id,{
         method:"PUT",
         headers: {
             ...authHeaders(),
@@ -140,7 +140,7 @@ async function editRegistro(id){
 }
 async function eliminarRegistro(id){
     
-    const response = await fetch("http://localhost:8080/api/registro/"+id,{
+    const response = await fetch("http://52.201.50.4:8080/api/registro/"+id,{
         headers:authHeaders(),
         method:"DELETE"
     });

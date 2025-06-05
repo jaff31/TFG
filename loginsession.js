@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    setUserEmailFromSession();
     
 });
 
@@ -52,25 +51,6 @@ async function saveToken(email, clave) {
 
 
 
-function setUserEmailFromSession() {
 
-    const email = sessionStorage.getItem("email");
-    if (!email) {
-        window.location.replace("../index.php");
-        return;
-    } 
-
-  
-    const elements = document.querySelectorAll(".user-email");
-
-    
-    elements.forEach(el => {
-        if ("value" in el) {
-            el.value = email;
-        } else {
-            el.textContent = email;
-        }
-    });
-}
 
 

@@ -19,7 +19,7 @@ async function cargarInforme(){
 
     event.preventDefault();
 
-    const response = await fetch("http://localhost:8080/api/registro/filtro/"+tarea+"/"+fecha,{
+    const response = await fetch("http://52.201.50.4:8080/api/registro/filtro/"+tarea+"/"+fecha,{
         headers:authHeaders(),
     });
     if(response.ok ){

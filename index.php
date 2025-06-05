@@ -22,7 +22,7 @@
         </div>
         
     </body>
-    <script src="session.js"></script>
+    <script src="loginsession.js"></script>
     <script src="login.js"></script>
 
     </html>

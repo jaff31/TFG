@@ -9,7 +9,7 @@ function authHeaders(contentType = "application/json") {
   }
 async function mostrarDetallesAlumno(id){
     
-    const respuesta = await fetch("http://localhost:8080/api/alumnos/"+id,{
+    const respuesta = await fetch("http://52.201.50.4:8080/api/alumnos/"+id,{
         headers:authHeaders(),
     });
     if(!respuesta.ok){
@@ -64,7 +64,7 @@ async function editarAlumno(id){
    form.setAttribute("onsubmit","editAlumno("+id+")")
    const contenedor = document.querySelector("#modal-editar")
    
-   const respuesta = await fetch("http://localhost:8080/api/alumnos/"+id,{
+   const respuesta = await fetch("http://52.201.50.4:8080/api/alumnos/"+id,{
     headers:authHeaders(),
    });
 
@@ -90,7 +90,7 @@ async function editAlumno(id){
     const NomCompleto = nombre +" " +apellido;
     console.log(NomCompleto)
     event.preventDefault()
-    const response = await fetch("http://localhost:8080/api/alumnos/"+id,{
+    const response = await fetch("http://52.201.50.4:8080/api/alumnos/"+id,{
         method:"PUT",
         headers: {
             ...authHeaders(),
@@ -113,7 +113,7 @@ async function editAlumno(id){
 }
 async function eliminarAlumno(id){
     
-    const response = await fetch("http://localhost:8080/api/alumnos/"+id,{
+    const response = await fetch("http://52.201.50.4:8080/api/alumnos/"+id,{
         headers:authHeaders(),
         method:"DELETE"
     });

@@ -4,5 +4,4 @@ if(!$db != null){
     echo 'Hubo un error con la conexion de la db';
 }
 
-
 ?>

@@ -280,6 +280,9 @@ h2 i {
     position:absolute;
     right: 13%;
     justify-content: center;
+    @media(min-width: 1600px){
+        right: 20%;
+    }
 }
 
 .perfil-usuario img {
